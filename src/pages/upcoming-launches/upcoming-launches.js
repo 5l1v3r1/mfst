@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 class UpcomingLaunches extends Component {
   render() {
     return (
-      <Typography variant="headline">Upcoming launches</Typography>
+      <Typography variant="h2">Upcoming launches</Typography>
     )
   }
 }
