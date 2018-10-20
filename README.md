@@ -1,4 +1,4 @@
-# MFST: Marketspace for space traveler
+# MFST: a Marketplace For Space Travelers
 
 ## Development
 
