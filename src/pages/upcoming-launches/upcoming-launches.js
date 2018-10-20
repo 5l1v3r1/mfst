@@ -80,7 +80,7 @@ class RecipeReviewCard extends React.Component {
                 {data[i].isostart.substr(0,8)}
               </Typography>
             }
-            title={data[i].name.split('|')[1]}
+            title={data[i].lsp.name}
             subheader={data[i].location.name}
           />
           <CardMedia
@@ -90,7 +90,7 @@ class RecipeReviewCard extends React.Component {
           />
           <CardContent>
             <Typography component="p">
-              {data[i].missions[0].description}
+             {data[i].name}
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
