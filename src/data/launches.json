@@ -115,10 +115,14 @@
               "https://ok.ru/mil"
             ]
           }
-        ],
-        "payloads": []
+        ]
       }
     ],
+    "payload": {
+      "total": 3250,
+      "freeForOrder": 1000
+    },
+    "orbit": "GTO",
     "lsp": {
       "id": 193,
       "name": "Russian Space Forces",
