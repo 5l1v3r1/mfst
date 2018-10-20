@@ -76,18 +76,13 @@ class Index extends React.Component {
                     <Typography variant="body1">Upcoming launches</Typography>
                   </Link>
                 </ListItem>
-                <ListItem>
-                  <Link to="/launch-details" onClick={this.toggleSideMenu(false)}>
-                    <Typography variant="body1">Launch details</Typography>
-                  </Link>
-                </ListItem>
               </List>
             </div>
           </SwipeableDrawer>
           <div>
             <Route exact path="/" component={UpcomingLaunches} />
             <Route path="/upcoming-launches" component={UpcomingLaunches} />
-            <Route path="/launch-details" component={LaunchDetails} />
+            <Route path="/launch-details/:launchId" component={LaunchDetails} />
           </div>
         </div>
       </Router>

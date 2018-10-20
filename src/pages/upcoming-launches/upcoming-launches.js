@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
+import { withRouter } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -47,15 +47,15 @@ const styles = theme => ({
 });
 
 class RecipeReviewCard extends React.Component {
-  state = { 
+  state = {
     expanded: false,
     spacing: '16',
   };
 
-  handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
-  };
-  
+  navigateToLaunchDetails = (launchId) => () => (
+    this.props.history.push(`launch-details/${launchId}`)
+  );
+
   createContent = () => {
     const { classes } = this.props;
     let launches = []
@@ -84,7 +84,7 @@ class RecipeReviewCard extends React.Component {
               className={classes.media}
               height="150"
               image={data[i].rocket.imageURL}
-              title="Contemplative Reptile" 
+              title="Contemplative Reptile"
             />
             <CardContent>
               <Typography component="p">
@@ -114,7 +114,7 @@ class RecipeReviewCard extends React.Component {
         </Grid>
       )
     }
-    return launches
+    return launches;
   }
 
   render() {
@@ -136,4 +136,4 @@ RecipeReviewCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RecipeReviewCard);
+export default withRouter(withStyles(styles)(RecipeReviewCard));
