@@ -45,6 +45,12 @@ const styles = theme => ({
   control: {
     padding: theme.spacing.unit * 2,
   },
+  title:{
+    maxWidth:200,
+  },
+  location:{
+    maxWidth:260,
+  },
 });
 
 class RecipeReviewCard extends React.Component {
@@ -80,7 +86,13 @@ class RecipeReviewCard extends React.Component {
                   {data.lsp.name[0]}
                 </Avatar>
               }
-              title={data.lsp.name}
+              title={
+                <Grid className={classes.title} container wrap="nowrap" spacing={16}>
+                  <Grid item xs zeroMinWidth>
+                    <Typography noWrap>{data.lsp.name}</Typography>
+                  </Grid>
+                </Grid>
+              }
               subheader={ldate[0]+' '+ldate[1]+' '+ldate[2]}/>
             <CardMedia
               component="img"
@@ -94,10 +106,10 @@ class RecipeReviewCard extends React.Component {
               <Typography component="p">
                 <b>Rocket</b> {data.name.split('|')[0]}
               </Typography>
-              <Typography component="p" rows="1">
+              <Typography component="p" spacing={16} className={classes.location} noWrap>
                 <b>Launch</b> {data.name.split('|')[1]}
               </Typography>
-              <Typography component="p">
+              <Typography component="p" spacing={16} className={classes.location} noWrap>
                 <b>Location</b> {data.location.name}
               </Typography>
               <Typography component="p">
