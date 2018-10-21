@@ -17,26 +17,13 @@ import StarIcon from '@material-ui/icons/Stars';
 
 const styles = theme => ({
   card: {
-    maxWidth: 400,
+    height: '100%',
   },
   media: {
     objectFit: 'cover',
   },
   actions: {
     display: 'flex',
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    marginLeft: 'auto',
-    [theme.breakpoints.up('sm')]: {
-      marginRight: -8,
-    },
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
   },
   avatar: {
     backgroundColor: red[500],
@@ -47,28 +34,25 @@ const styles = theme => ({
 });
 
 class RecipeReviewCard extends React.Component {
-  state = {
-    expanded: false,
-    spacing: '16',
-  };
-
   navigateToLaunchDetails = (launchId) => () => (
     this.props.history.push(`launch-details/${launchId}`)
   );
 
-  createContent = () => {
+  createContent() {
     const { classes } = this.props;
-    let launches = []
-    for (let i=0; i<data.length; i++){
-      let payloadSpaceInfo = [];
-      let ldate = data[i].net.split(' ');
-      if (data[i].payload.freeForOrder > 0) {
-        payloadSpaceInfo.push(<StarIcon color='secondary' key={i} />);
+
+    return data.map(data => {
+      const payloadSpaceInfo = [];
+      const ldate = data.net.split(' ');
+
+      if (data.payload.freeForOrder > 0) {
+        payloadSpaceInfo.push(<StarIcon color='secondary' key={data.id}/>);
       } else {
-        payloadSpaceInfo.push(<StarIcon color='action' key={i} />);
+        payloadSpaceInfo.push(<StarIcon color='action' key={data.id}/>);
       }
-      launches.push(
-        <Grid key={i} item>
+
+      return (
+        <Grid key={data.id} item xs={3}>
           <Card className={classes.card}>
             <CardHeader
               avatar={
@@ -76,57 +60,52 @@ class RecipeReviewCard extends React.Component {
                   R
                 </Avatar>
               }
-              title={data[i].lsp.name}
+              title={data.lsp.name}
               subheader={ldate[0]+' '+ldate[1]+' '+ldate[2]}/>
             <CardMedia
               component="img"
               alt="Contemplative Reptile"
               className={classes.media}
               height="150"
-              image={data[i].rocket.imageURL}
+              image={data.rocket.imageURL}
               title="Contemplative Reptile"
             />
             <CardContent>
               <Typography component="p">
-                <b>Rocket</b> {data[i].name.split('|')[0]}
+                <b>Rocket</b> {data.name.split('|')[0]}
               </Typography>
               <Typography component="p" rows="1">
-                <b>Launch</b> {data[i].name.split('|')[1]}
+                <b>Launch</b> {data.name.split('|')[1]}
               </Typography>
               <Typography component="p">
-                <b>Location</b> {data[i].location.name}
+                <b>Location</b> {data.location.name}
               </Typography>
             </CardContent>
             <CardActions className={classes.actions}>
               <Typography>
-                {data[i].orbit}
+                {data.orbit}
               </Typography>
               <Typography>
                 {payloadSpaceInfo}
               </Typography>
-              <Button variant="contained" color="primary" className={classnames(classes.expand, {
-                  [classes.expandOpen]: this.state.expanded,
-                })}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.navigateToLaunchDetails(data.id)}
+              >
                 Learn More
               </Button>
             </CardActions>
           </Card>
         </Grid>
-      )
-    }
-    return launches;
-  }
+      );
+    });
+  };
 
   render() {
-    const { spacing } = this.state;
-    const { classes } = this.props;
     return (
-      <Grid container className={classes.root} spacing={8}>
-        <Grid item xs={12}>
-          <Grid container className={classes.demo} justify="center" spacing={Number(spacing)}>
-            {this.createContent()}
-          </Grid>
-        </Grid>
+      <Grid container justify="center" spacing={16}>
+        {this.createContent()}
       </Grid>
     );
   }
