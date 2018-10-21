@@ -28,13 +28,14 @@ function createData(name, calories, fat, carbs, protein) {
 let date1 = data[0].net.split(' ');
 let date2 = data[1].net.split(' ');
 let date3 = data[2].net.split(' ');
-let date4 = data[2].net.split(' ');
+let date4 = data[3].net.split(' ');
 
 const rows = [
   createData('Launch Date', date1[0]+' '+date1[1]+' '+date1[2], date2[0]+' '+date2[1]+' '+date2[2], date3[0]+' '+date3[1]+' '+date3[2], date4[0]+' '+date4[1]+' '+date4[2]),
   createData('Orbit', data[0].orbit, data[1].orbit, data[2].orbit, data[3].orbit),
   createData('Total Payload (kg)', data[0].payload.total, data[1].payload.total, data[2].payload.total, data[3].payload.total),
   createData('Free Space', data[0].payload.freeForOrder, data[1].payload.freeForOrder, data[2].payload.freeForOrder, data[3].payload.freeForOrder),
+  createData('Payload Price (kg)', '$40k', '$30k', '$50k', '$100k'),
   createData('Location', data[0].location.name, data[1].location.name, data[2].location.name, data[3].location.name),
 ];
 
