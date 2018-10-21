@@ -33,10 +33,12 @@ let date4 = data[3].net.split(' ');
 const rows = [
   createData('Launch Date', date1[0]+' '+date1[1]+' '+date1[2], date2[0]+' '+date2[1]+' '+date2[2], date3[0]+' '+date3[1]+' '+date3[2], date4[0]+' '+date4[1]+' '+date4[2]),
   createData('Orbit', data[0].orbit, data[1].orbit, data[2].orbit, data[3].orbit),
+  createData('Provider', data[0].lsp.name, data[1].lsp.name, data[2].lsp.name, data[3].lsp.name),
+  createData('Location', data[0].location.name, data[1].location.name, data[2].location.name, data[3].location.name),
+  createData('Rocket', data[0].rocket.name, data[1].rocket.name, data[2].rocket.name, data[3].rocket.name),
   createData('Total Payload (kg)', data[0].payload.total, data[1].payload.total, data[2].payload.total, data[3].payload.total),
   createData('Free Space', data[0].payload.freeForOrder, data[1].payload.freeForOrder, data[2].payload.freeForOrder, data[3].payload.freeForOrder),
-  createData('Payload Price (kg)', '$40k', '$30k', '$50k', '$100k'),
-  createData('Location', data[0].location.name, data[1].location.name, data[2].location.name, data[3].location.name),
+  createData('Payload Price (kg)', '$40k', '$30k', '$50k', '$100k'),  
 ];
 
 function SimpleTable(props) {
@@ -47,11 +49,11 @@ function SimpleTable(props) {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell numeric>Calories</TableCell>
-            <TableCell numeric>Fat (g)</TableCell>
-            <TableCell numeric>Carbs (g)</TableCell>
-            <TableCell numeric>Protein (g)</TableCell>
+            <TableCell>Specs</TableCell>
+            <TableCell numeric>{data[0].name.split('|')[1]}</TableCell>
+            <TableCell numeric>{data[1].name.split('|')[1]}</TableCell>
+            <TableCell numeric>{data[2].name.split('|')[1]}</TableCell>
+            <TableCell numeric>{data[3].name.split('|')[1]}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
