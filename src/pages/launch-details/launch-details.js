@@ -23,6 +23,7 @@ const styles = theme => ({
   },
   card: {
     height: '100%',
+    margin: `0 ${theme.spacing.unit}px`,
   },
   payloadCard: {
     marginTop: theme.spacing.unit * 2,
@@ -30,6 +31,12 @@ const styles = theme => ({
   },
   media: {
     height: 300,
+  },
+  orderActions: {
+    justifyContent: 'center',
+  },
+  orderButton: {
+    minWidth: 300,
   },
 });
 
@@ -180,7 +187,21 @@ class LaunchDetails extends Component {
             size={200}
             value={Math.floor(payloadUsed * 100)}
           />
+          <Typography variant="h4">
+            Payload available {launch.payload.freeForOrder}/{launch.payload.total}
+          </Typography>
         </CardContent>
+        <CardActions classes={{ root: classes.orderActions }}>
+          <Button
+            size="large"
+            variant="contained"
+            color="secondary"
+            classes={{ root: classes.orderButton }}
+            disabled={launch.payload.freeForOrder === 0}
+          >
+            Request payload allowance
+          </Button>
+        </CardActions>
       </Card>
     );
   }
