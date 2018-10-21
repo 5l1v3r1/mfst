@@ -78,11 +78,6 @@ class Index extends React.Component {
                   </Link>
                 </ListItem>
                 <ListItem>
-                  <Link to="/launch-details" onClick={this.toggleSideMenu(false)}>
-                    <Typography variant="body1">Launch details</Typography>
-                  </Link>
-                </ListItem>
-                <ListItem>
                   <Link to="/compare-launches" onClick={this.toggleSideMenu(false)}>
                     <Typography variant="body1">Compare Launches</Typography>
                   </Link>
@@ -93,8 +88,8 @@ class Index extends React.Component {
           <div>
             <Route exact path="/" component={UpcomingLaunches} />
             <Route path="/upcoming-launches" component={UpcomingLaunches} />
-            <Route path="/launch-details" component={LaunchDetails} />
             <Route path="/compare-launches" component={CompareLaunches} />
+            <Route path="/launch-details/:launchId" component={LaunchDetails} />
           </div>
         </div>
       </Router>
