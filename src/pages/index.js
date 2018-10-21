@@ -11,6 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import UpcomingLaunches from './upcoming-launches';
 import LaunchDetails from './launch-details';
+import CompareLaunches from './compare-launches';
 
 import withRoot from '../withRoot';
 
@@ -81,6 +82,11 @@ class Index extends React.Component {
                     <Typography variant="body1">Launch details</Typography>
                   </Link>
                 </ListItem>
+                <ListItem>
+                  <Link to="/compare-launches" onClick={this.toggleSideMenu(false)}>
+                    <Typography variant="body1">Compare Launches</Typography>
+                  </Link>
+                </ListItem>
               </List>
             </div>
           </SwipeableDrawer>
@@ -88,6 +94,7 @@ class Index extends React.Component {
             <Route exact path="/" component={UpcomingLaunches} />
             <Route path="/upcoming-launches" component={UpcomingLaunches} />
             <Route path="/launch-details" component={LaunchDetails} />
+            <Route path="/compare-launches" component={CompareLaunches} />
           </div>
         </div>
       </Router>
