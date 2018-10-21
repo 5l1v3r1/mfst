@@ -24,6 +24,10 @@ const styles = theme => ({
   card: {
     height: '100%',
   },
+  payloadCard: {
+    marginTop: theme.spacing.unit * 2,
+    textAlign: 'center',
+  },
   media: {
     height: 300,
   },
@@ -40,7 +44,7 @@ class LaunchDetails extends Component {
       <Card classes={{ root: classes.card }}>
         <CardMedia
           className={classes.media}
-          image={launch.rocket.imageURL}
+          image={`/${launch.lsp.icon}`}
           title={launch.rocket.name}
         />
         <CardContent>
@@ -53,13 +57,31 @@ class LaunchDetails extends Component {
           <Typography component="p">
             Window start: <b>{launch.windowend}</b>
           </Typography>
+          <Typography component="p">
+            Orbit: <b>{launch.orbit}</b>
+          </Typography>
           <Typography gutterBottom variant="h6">
             Mission
           </Typography>
           <Typography component="p">
             {launch.missions.map(mission => mission.description)}
           </Typography>
+
+          <Typography gutterBottom variant="h6">
+            Service provider
+          </Typography>
+          <Typography component="p">
+            Name: {launch.lsp.name}
+          </Typography>
+          <Typography component="p">
+            Country: {launch.lsp.countryCode}
+          </Typography>
         </CardContent>
+        <CardActions>
+          <Button size="small" color="primary" target="_blank" href={launch.lsp.wikiURL}>
+            Learn more about LSP
+          </Button>
+        </CardActions>
       </Card>
     );
   }
@@ -143,6 +165,26 @@ class LaunchDetails extends Component {
     );
   }
 
+  renderPayloadCard(launch) {
+    const { classes } = this.props;
+    const payloadUsed = (launch.payload.total - launch.payload.freeForOrder) / launch.payload.total;
+
+    return (
+      <Card classes={{ root: classes.payloadCard }}>
+        <CardContent>
+          <Typography gutterBottom variant="h5">
+            Payload status
+          </Typography>
+          <CircularProgress
+            variant="static"
+            size={200}
+            value={Math.floor(payloadUsed * 100)}
+          />
+        </CardContent>
+      </Card>
+    );
+  }
+
   render() {
     const { match, classes } = this.props;
     const launch = launchData.find(data => data.id === Number(match.params.launchId));
@@ -151,7 +193,7 @@ class LaunchDetails extends Component {
       <div>
         <Typography variant="h2" gutterBottom classes={{ root: classes.pageTitle }}>
           {launch.name}
-          </Typography>
+        </Typography>
         <Grid container>
           <Grid item xs={4}>
             {this.renderLaunchCard(launch)}
@@ -161,6 +203,9 @@ class LaunchDetails extends Component {
           </Grid>
           <Grid item xs={4}>
             {this.renderRocketCard(launch)}
+          </Grid>
+          <Grid item xs={12}>
+            {this.renderPayloadCard(launch)}
           </Grid>
         </Grid>
       </div>
