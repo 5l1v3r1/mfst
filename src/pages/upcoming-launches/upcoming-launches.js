@@ -10,12 +10,17 @@ import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import grey from '@material-ui/core/colors/grey';
-import data from '../../data/launches.json';
+import launches from '../../data/launches.json';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import StarIcon from '@material-ui/icons/Stars';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = theme => ({
+  root: {
+    textAlign: 'center',
+    paddingTop: theme.spacing.unit * 20,
+  },
   card: {
     height: '100%',
   },
@@ -24,6 +29,15 @@ const styles = theme => ({
   },
   actions: {
     display: 'flex',
+    justifyContent: 'space-between',
+  },
+  payloadPercentage: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  payloadPercentageText: {
+    lineHeight: 1.8,
+    marginLeft: theme.spacing.unit,
   },
   avatar: {
     backgroundColor: grey[50],
@@ -38,21 +52,23 @@ class RecipeReviewCard extends React.Component {
     this.props.history.push(`launch-details/${launchId}`)
   );
 
+  renderPayloadPercentage(data) {
+    const { classes } = this.props;
+    const loadPercentage = 100 - Math.ceil((data.payload.freeForOrder / data.payload.total) * 100)
+    return [
+      <CircularProgress color={data.payload.freeForOrder > 0 ? 'secondary' : 'action'} size={26} className={classes.progress} variant="static" value={loadPercentage} />,
+      <Typography component="div" className={classes.payloadPercentageText}>{loadPercentage}% loaded</Typography>
+    ];
+  }
+
   createContent() {
     const { classes } = this.props;
 
-    return data.map(data => {
-      const payloadSpaceInfo = [];
+    return launches.map(data => {
       const ldate = data.net.split(' ');
 
-      if (data.payload.freeForOrder > 0) {
-        payloadSpaceInfo.push(<StarIcon color='secondary' key={data.id}/>);
-      } else {
-        payloadSpaceInfo.push(<StarIcon color='action' key={data.id}/>);
-      }
-
       return (
-        <Grid key={data.id} item xs={3}>
+        <Grid key={data.id} spacing={16} item xs={3}>
           <Card className={classes.card}>
             <CardHeader
               avatar={
@@ -84,14 +100,14 @@ class RecipeReviewCard extends React.Component {
               <Typography component="p">
                 <b>Location</b> {data.location.name}
               </Typography>
+              <Typography component="p">
+                <b>Destination orbit</b> {data.orbit}
+              </Typography>
             </CardContent>
             <CardActions className={classes.actions}>
-              <Typography>
-                {data.orbit}
-              </Typography>
-              <Typography>
-                {payloadSpaceInfo}
-              </Typography>
+              <div className={classes.payloadPercentage}>
+                {this.renderPayloadPercentage(data)}
+              </div>
               <Button
                 variant="contained"
                 color="primary"
