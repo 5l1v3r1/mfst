@@ -56,7 +56,13 @@ class RecipeReviewCard extends React.Component {
           <Card className={classes.card}>
             <CardHeader
               avatar={
-                <Avatar alt={data.lsp.name} src={data.lsp.icon} className={classes.avatar}>{data.lsp.name[0]}</Avatar>
+                <Avatar
+                  alt={data.lsp.name}
+                  src={`${process.env.PUBLIC_URL}/${data.lsp.icon}`}
+                  className={classes.avatar}
+                >
+                  {data.lsp.name[0]}
+                </Avatar>
               }
               title={data.lsp.name}
               subheader={ldate[0]+' '+ldate[1]+' '+ldate[2]}/>
