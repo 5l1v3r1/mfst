@@ -127,6 +127,7 @@
     "lsp": {
       "id": 193,
       "name": "Russian Space Forces",
+      "icon": "lsp_icons/russian-aerospace-forces.png",
       "abbrev": "VKS",
       "countryCode": "RUS",
       "type": 1,
@@ -258,6 +259,7 @@
     "lsp": {
       "id": 257,
       "name": "Northrop Grumman Innovation Systems",
+      "icon": "lsp_icons/northrop-grumman.png",
       "abbrev": "NGIS",
       "countryCode": "USA",
       "type": 3,
@@ -371,6 +373,7 @@
     "lsp": {
       "id": 259,
       "name": "LandSpace",
+      "icon": "lsp_icons/landspace.png",
       "abbrev": "LS",
       "countryCode": "CHN",
       "type": 3,
@@ -497,6 +500,7 @@
     "lsp": {
       "id": 98,
       "name": "Mitsubishi Heavy Industries",
+      "icon": "lsp_icons/mitsubishi-heavy-industries.png",
       "abbrev": "MHI",
       "countryCode": "JPN",
       "type": 3,
@@ -618,6 +622,7 @@
     "lsp": {
       "id": 88,
       "name": "China Aerospace Science and Technology Corporation",
+      "icon": "lsp_icons/casc.png",
       "abbrev": "CASC",
       "countryCode": "CHN",
       "type": 1,
@@ -756,6 +761,7 @@
     "lsp": {
       "id": 201,
       "name": "Vector",
+      "icon": "lsp_icons/vector-space-systems.png",
       "abbrev": "VEC",
       "countryCode": "USA",
       "type": 3,
@@ -888,6 +894,7 @@
     "lsp": {
       "id": 199,
       "name": "Virgin Orbit",
+      "icon": "lsp_icons/virgin-orbit.png",
       "abbrev": "VO",
       "countryCode": "USA",
       "type": 3,
@@ -1038,6 +1045,7 @@
     "lsp": {
       "id": 193,
       "name": "Russian Space Forces",
+      "icon": "lsp_icons/russian-aerospace-forces.png",
       "abbrev": "VKS",
       "countryCode": "RUS",
       "type": 1,
@@ -1179,6 +1187,7 @@
     "lsp": {
       "id": 31,
       "name": "Indian Space Research Organization",
+      "icon": "lsp_icons/indian-space-research-organisation.png",
       "abbrev": "ISRO",
       "countryCode": "IND",
       "type": 1,
@@ -1272,6 +1281,7 @@
     "lsp": {
       "id": 115,
       "name": "Arianespace",
+      "icon": "lsp_icons/arianespace.png",
       "abbrev": "ASA",
       "countryCode": "FRA",
       "type": 3,
@@ -1390,6 +1400,7 @@
     "lsp": {
       "id": 177,
       "name": "China Great Wall Industry Corporation",
+      "icon": "lsp_icons/casc.png",
       "abbrev": "CGWIC",
       "countryCode": "CHN",
       "type": 3,
