@@ -11,6 +11,12 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import launchData from '../../data/launches.json';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 const styles = theme => ({
@@ -172,6 +178,18 @@ class LaunchDetails extends Component {
     );
   }
 
+  state = {
+    open: false,
+  };
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   renderPayloadCard(launch) {
     const { classes } = this.props;
     const payloadUsed = (launch.payload.total - launch.payload.freeForOrder) / launch.payload.total;
@@ -188,7 +206,7 @@ class LaunchDetails extends Component {
             value={Math.floor(payloadUsed * 100)}
           />
           <Typography variant="h4">
-            Payload available {launch.payload.freeForOrder}/{launch.payload.total}
+            Payload available (kg) {launch.payload.freeForOrder}/{launch.payload.total}
           </Typography>
         </CardContent>
         <CardActions classes={{ root: classes.orderActions }}>
@@ -198,9 +216,70 @@ class LaunchDetails extends Component {
             color="secondary"
             classes={{ root: classes.orderButton }}
             disabled={launch.payload.freeForOrder === 0}
+            onClick={this.handleClickOpen}
           >
             Request payload allowance
           </Button>
+          <Dialog
+            open={this.state.open}
+            onClose={this.handleClose}
+            aria-labelledby="form-dialog-title" >
+            <DialogTitle id="form-dialog-title">Payload</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                To get an offer for this launch, please fill the form and enter your email address here. We will send
+                updates occasionally.
+              </DialogContentText>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="fullname"
+                label="Full Name"
+                type="text"
+                fullWidth
+              />
+              <TextField
+                autoFocus
+                margin="dense"
+                id="phone"
+                label="Phone Number"
+                type="text"
+                fullWidth
+              />
+              <TextField
+                autoFocus
+                margin="dense"
+                id="payloadInfo"
+                label="Payload Weight"
+                type="text"
+                fullWidth
+              />
+              <TextField
+                autoFocus
+                margin="dense"
+                id="aditionalInfo"
+                label="Additional Info"
+                type="text"
+                fullWidth
+              />
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Email Address"
+                type="email"
+                fullWidth
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleClose} color="primary">
+                Cancel
+              </Button>
+              <Button onClick={this.handleClose} color="primary">
+                Subscribe
+              </Button>
+            </DialogActions>
+          </Dialog>
         </CardActions>
       </Card>
     );
