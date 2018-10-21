@@ -42,7 +42,7 @@ class Index extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Router>
+      <Router basename="/mfst">
         <div>
           <AppBar position="static">
             <Toolbar>
