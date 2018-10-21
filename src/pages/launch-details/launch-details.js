@@ -276,7 +276,7 @@ class LaunchDetails extends Component {
                 Cancel
               </Button>
               <Button onClick={this.handleClose} color="primary">
-                Subscribe
+                Send
               </Button>
             </DialogActions>
           </Dialog>
