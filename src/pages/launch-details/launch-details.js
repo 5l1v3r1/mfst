@@ -51,7 +51,7 @@ class LaunchDetails extends Component {
       <Card classes={{ root: classes.card }}>
         <CardMedia
           className={classes.media}
-          image={`/${launch.lsp.icon}`}
+          image={`${process.env.PUBLIC_URL}/${launch.lsp.icon}`}
           title={launch.rocket.name}
         />
         <CardContent>
@@ -100,7 +100,7 @@ class LaunchDetails extends Component {
       <Card classes={{ root: classes.card }}>
         <CardMedia
           className={classes.media}
-          image="/google_maps.png"
+          image={`${process.env.PUBLIC_URL}/google_maps.png`}
           title={launch.location.name}
         />
         <CardContent>

@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
+import grey from '@material-ui/core/colors/grey';
 import data from '../../data/launches.json';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -26,7 +26,7 @@ const styles = theme => ({
     display: 'flex',
   },
   avatar: {
-    backgroundColor: red[500],
+    backgroundColor: grey[50],
   },
   control: {
     padding: theme.spacing.unit * 2,
@@ -56,9 +56,7 @@ class RecipeReviewCard extends React.Component {
           <Card className={classes.card}>
             <CardHeader
               avatar={
-                <Avatar aria-label="Recipe" className={classes.avatar}>
-                  R
-                </Avatar>
+                <Avatar alt={data.lsp.name} src={data.lsp.icon} className={classes.avatar}>{data.lsp.name[0]}</Avatar>
               }
               title={data.lsp.name}
               subheader={ldate[0]+' '+ldate[1]+' '+ldate[2]}/>
